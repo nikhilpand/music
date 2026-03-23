@@ -1,0 +1,25 @@
+/* Google Fonts - Noto Sans Devanagari for Hindi/Urdu Shayari support */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-shayari: 'Noto Sans Devanagari', ui-serif, Georgia, serif;
+  --font-default: ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-default);
+  }
+  
+  /* Shayari uses Hindi font where applicable, fallback to serif */
+  [class*="shayari"], .shayari-text {
+    font-family: var(--font-shayari);
+  }
+  
+  h1, h2, h3, p {
+    font-family: var(--font-default);
+  }
+}
+
+/* Preload handled in index.html */
+

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import './tailwind.css';
+@import './theme.css';
+
+* { box-sizing: border-box; }
+
+:root {
+  --font-ui: 'Outfit', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: #0f0f0f;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+/* Range input */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255,255,255,0.15);
+  border-radius: 99px;
+  height: 3px;
+  outline: none;
+}
+
+/* ─── Haptic Ripple — vinyl groove expanding from click ─────────────────────── */
+@keyframes haptic-ripple {
+  0%   { transform: scale(0); opacity: 0.5; }
+  80%  { transform: scale(2.8); opacity: 0.08; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.haptic-btn {
+  position: relative;
+  overflow: hidden;
+}
+.haptic-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 60%);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+.haptic-btn:active::after {
+  animation: haptic-ripple 0.55s cubic-bezier(0.2, 0, 0.8, 1) forwards;
+}
+
+/* ─── Glitch Card Reveal ─────────────────────────────────────────────────────── */
+@keyframes glitch-in {
+  0%   { clip-path: inset(0 100% 0 0); opacity: 0; transform: translateX(-4px); }
+  30%  { clip-path: inset(0 40% 0 0);  opacity: 0.5; transform: translateX(3px); }
+  60%  { clip-path: inset(0 5% 0 0);   opacity: 0.9; transform: translateX(-1px); }
+  100% { clip-path: inset(0 0% 0 0);   opacity: 1; transform: translateX(0); }
+}
+
+.glitch-card {
+  animation: glitch-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Breath Glow — play button breathing when playing ──────────────────────── */
+@keyframes breath-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.0), 0 0 12px rgba(255,255,255,0.18); transform: scale(1); }
+  50%       { box-shadow: 0 0 0 8px rgba(255,255,255,0.06), 0 0 24px rgba(255,255,255,0.35); transform: scale(1.06); }
+}
+
+.breath-play {
+  animation: breath-glow 3.5s ease-in-out infinite;
+}
